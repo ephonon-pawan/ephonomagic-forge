@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ephonon CMS API Documentation Hindi</title>
+    <style>
+      :root {
+        --bg: #f4f1ea;
+        --surface: #fffdf8;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #0f766e;
+        --border: #e5ded3;
+        --code-bg: #111827;
+        --code-text: #f9fafb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Noto Serif Devanagari", serif;
+        background: linear-gradient(180deg, #f6efe3 0%, #f8f7f3 100%);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+      }
+
+      .hero {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        color: #111827;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+        margin: 0 0 12px;
+      }
+
+      h2 {
+        margin-top: 36px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h3 {
+        margin-top: 28px;
+      }
+
+      p,
+      li {
+        font-size: 1rem;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .pill {
+        display: inline-block;
+        background: #d1fae5;
+        color: #065f46;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin-top: 8px;
+      }
+
+      .card {
+        background: rgba(255, 253, 248, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px;
+        margin-top: 20px;
+      }
+
+      code {
+        
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 0.95em;
+      }
+
+      pre {
+        background: var(--code-bg);
+        color: var(--code-text);
+        padding: 18px;
+        border-radius: 16px;
+        overflow-x: auto;
+        font-size: 0.92rem;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      .section {
+        margin-top: 22px;
+      }
+
+      .print-note {
+        margin-top: 18px;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        color: #9a3412;
+        padding: 14px 16px;
+        border-radius: 14px;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .hero,
+        .card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <h1>Ephonon Technology CMS Backend API Documentation</h1>
+        <p class="muted">
+          Hindi documentation for frontend and admin CMS integration.
+        </p>
+        <div class="pill">Printable HTML - Browser se PDF export kar sakte ho</div>
+        <div class="print-note">
+          PDF banane ke liye is file ko browser me kholo aur <strong>Print → Save as PDF</strong> use karo.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>1. Base URL</h2>
+        <pre><code>http://localhost:5000/api</code></pre>
+        <p>Health check endpoint:</p>
+        <pre><code>GET /api/health</code></pre>
+
+        <h2>2. Common Response Format</h2>
+        <pre><code>{
+  "success": true,
+  "message": "Project created successfully",
+  "data": {}
+}</code></pre>
+
+        <h2>3. Authentication Flow</h2>
+        <ul>
+          <li>Login ke baad <code>accessToken</code> response me milta hai.</li>
+          <li><code>refreshToken</code> secure HTTP-only cookie me milta hai.</li>
+          <li>Protected routes me <code>Authorization: Bearer &lt;token&gt;</code> bhejna hota hai.</li>
+          <li>Frontend me <code>credentials: "include"</code> ya <code>withCredentials: true</code> use karo.</li>
+        </ul>
+
+        <h2>4. Auth APIs</h2>
+        <h3>POST /api/auth/login</h3>
+        <pre><code>{
+  "email": "admin@ephonon.com",
+  "password": "ChangeThisPassword123!"
+}</code></pre>
+
+        <h3>POST /api/auth/register</h3>
+        <p>Protected route. Sirf admin naya CMS user bana sakta hai.</p>
+        <pre><code>{
+  "name": "Content Manager",
+  "email": "editor@ephonon.com",
+  "password": "StrongPassword123!",
+  "role": "editor"
+}</code></pre>
+
+        <h3>POST /api/auth/logout</h3>
+        <p>Bearer token required.</p>
+
+        <h3>POST /api/auth/refresh</h3>
+        <p>Refresh token cookie ke basis par naya access token deta hai.</p>
+
+        <h3>GET /api/auth/profile</h3>
+        <p>Logged-in user profile fetch karta hai.</p>
+
+        <h2>5. Projects APIs</h2>
+        <ul>
+          <li><code>GET /api/projects</code></li>
+          <li><code>GET /api/projects/:id</code></li>
+          <li><code>POST /api/projects</code></li>
+          <li><code>PUT /api/projects/:id</code></li>
+          <li><code>DELETE /api/projects/:id</code></li>
+        </ul>
+        <pre><code>{
+  "title": "Enterprise CMS Platform",
+  "description": "A modular CMS solution for business sites.",
+  "thumbnail": "https://example.com/project.jpg",
+  "technologies": ["Node.js", "TypeScript", "MongoDB"],
+  "category": "Web Application",
+  "githubUrl": "https://github.com/example/repo",
+  "liveUrl": "https://example.com",
+  "featured": true
+}</code></pre>
+
+        <h2>6. Blogs APIs</h2>
+        <ul>
+          <li><code>GET /api/blogs</code></li>
+          <li><code>GET /api/blogs/:slug</code></li>
+          <li><code>POST /api/blogs</code></li>
+          <li><code>PUT /api/blogs/:id</code></li>
+          <li><code>DELETE /api/blogs/:id</code></li>
+        </ul>
+
+        <h2>7. Services APIs</h2>
+        <ul>
+          <li><code>GET /api/services</code></li>
+          <li><code>GET /api/services/:id</code></li>
+          <li><code>POST /api/services</code></li>
+          <li><code>PUT /api/services/:id</code></li>
+          <li><code>DELETE /api/services/:id</code></li>
+        </ul>
+
+        <h2>8. Homepage API</h2>
+        <ul>
+          <li><code>GET /api/homepage</code></li>
+          <li><code>PUT /api/homepage</code></li>
+        </ul>
+
+        <h2>9. Testimonials APIs</h2>
+        <ul>
+          <li><code>GET /api/testimonials</code></li>
+          <li><code>GET /api/testimonials/:id</code></li>
+          <li><code>POST /api/testimonials</code></li>
+          <li><code>PUT /api/testimonials/:id</code></li>
+          <li><code>DELETE /api/testimonials/:id</code></li>
+        </ul>
+
+        <h2>10. Team APIs</h2>
+        <ul>
+          <li><code>GET /api/team</code></li>
+          <li><code>GET /api/team/:id</code></li>
+          <li><code>POST /api/team</code></li>
+          <li><code>PUT /api/team/:id</code></li>
+          <li><code>DELETE /api/team/:id</code></li>
+        </ul>
+
+        <h2>11. Contact APIs</h2>
+        <ul>
+          <li><code>POST /api/contact</code></li>
+          <li><code>GET /api/contact</code></li>
+        </ul>
+
+        <h2>12. Media Upload API</h2>
+        <p>Endpoint: <code>POST /api/media/upload</code></p>
+        <p>Request type: <code>multipart/form-data</code></p>
+        <p>Form field: <code>image</code></p>
+
+        <h2>13. Frontend Integration Notes</h2>
+        <pre><code>const response = await fetch("http://localhost:5000/api/auth/login", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  credentials: "include",
+  body: JSON.stringify({
+    email: "admin@ephonon.com",
+    password: "ChangeThisPassword123!"
+  })
+});</code></pre>
+
+        <p>
+          Full detailed Hindi documentation ke liye Markdown version dekho:
+          <code>backend/docs/API-DOCUMENTATION-HI.md</code>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+import mongoose from "mongoose";
+
+const teamMemberSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    role: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    bio: {
+      type: String,
+      trim: true
+    },
+    image: {
+      type: String,
+      trim: true
+    },
+    linkedin: {
+      type: String,
+      trim: true
+    }
+  },
+  {
+    timestamps: true
+  }
+);
+
+export const TeamMember = mongoose.model("TeamMember", teamMemberSchema);
