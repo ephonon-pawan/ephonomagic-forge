@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Technologies } from "@/components/sections/Technologies";
 import { CTA } from "@/components/sections/CTA";
 import { SectionHeader } from "@/components/sections/SectionHeader";
@@ -12,19 +12,8 @@ const groups = [
   { title: "Tooling", items: ["Stripe", "Vercel", "Sentry", "PostHog", "Datadog", "Linear"] },
 ];
 
-export const Route = createFileRoute("/technologies")({
-  head: () => ({
-    meta: [
-      { title: "Technologies — Ephonon Technology" },
-      { name: "description", content: "The modern, type-safe, cloud-native stack Ephonon Technology uses to build production software." },
-      { property: "og:title", content: "Technologies — Ephonon Technology" },
-      { property: "og:description", content: "Our production-tested technology stack." },
-    ],
-  }),
-  component: TechPage,
-});
-
-function TechPage() {
+export default function TechPage() {
+  usePageMeta("Technologies — Ephonon Technology", "The modern, type-safe, cloud-native stack Ephonon Technology uses to build production software.");
   return (
     <>
       <section className="pt-12 pb-4">

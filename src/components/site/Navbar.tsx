@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState } from "react-router-dom";
 import { Menu, X, Sparkles } from "lucide-react";
 
 const links = [

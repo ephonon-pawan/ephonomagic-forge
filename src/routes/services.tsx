@@ -1,22 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
 import { CTA } from "@/components/sections/CTA";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 
-export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services — Ephonon Technology" },
-      { name: "description", content: "Custom software, web, mobile, SaaS, cloud and DevOps services from Ephonon Technology." },
-      { property: "og:title", content: "Services — Ephonon Technology" },
-      { property: "og:description", content: "End-to-end product engineering across web, mobile, SaaS and cloud." },
-    ],
-  }),
-  component: ServicesPage,
-});
-
-function ServicesPage() {
+export default function ServicesPage() {
+  usePageMeta("Services — Ephonon Technology", "Custom software, web, mobile, SaaS, cloud and DevOps services from Ephonon Technology.");
   return (
     <>
       <section className="pt-12 pb-4">
