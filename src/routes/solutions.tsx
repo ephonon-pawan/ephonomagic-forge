@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { CTA } from "@/components/sections/CTA";
 import { Building2, ShoppingBag, GraduationCap, HeartPulse, Banknote, Truck, ArrowRight } from "lucide-react";
@@ -12,19 +13,8 @@ const solutions = [
   { icon: Truck, title: "Logistics & SaaS", desc: "Fleet, warehouse and supply-chain platforms with real-time data." },
 ];
 
-export const Route = createFileRoute("/solutions")({
-  head: () => ({
-    meta: [
-      { title: "Solutions — Ephonon Technology" },
-      { name: "description", content: "Industry solutions: enterprise, commerce, EdTech, HealthTech, FinTech and logistics platforms by Ephonon." },
-      { property: "og:title", content: "Solutions — Ephonon Technology" },
-      { property: "og:description", content: "Tailored software solutions across industries." },
-    ],
-  }),
-  component: SolutionsPage,
-});
-
-function SolutionsPage() {
+export default function SolutionsPage() {
+  usePageMeta("Solutions — Ephonon Technology", "Industry solutions: enterprise, commerce, EdTech, HealthTech, FinTech and logistics platforms by Ephonon.");
   return (
     <>
       <section className="pt-12 pb-4">

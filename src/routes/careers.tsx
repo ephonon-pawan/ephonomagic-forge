@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { ArrowRight, MapPin, Briefcase } from "lucide-react";
 
@@ -10,19 +10,8 @@ const roles = [
   { title: "Engineering Manager", team: "Leadership", location: "Hybrid · Berlin", type: "Full-time" },
 ];
 
-export const Route = createFileRoute("/careers")({
-  head: () => ({
-    meta: [
-      { title: "Careers — Ephonon Technology" },
-      { name: "description", content: "Join Ephonon Technology — work with senior engineers on meaningful, scalable products. Remote-friendly roles." },
-      { property: "og:title", content: "Careers — Ephonon Technology" },
-      { property: "og:description", content: "Open roles for engineers, designers and platform specialists." },
-    ],
-  }),
-  component: CareersPage,
-});
-
-function CareersPage() {
+export default function CareersPage() {
+  usePageMeta("Careers — Ephonon Technology", "Join Ephonon Technology — work with senior engineers on meaningful, scalable products. Remote-friendly roles.");
   return (
     <>
       <section className="pt-12 pb-12">

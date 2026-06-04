@@ -1,5 +1,5 @@
 import { SectionHeader } from "./SectionHeader";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import {
   Code2, Globe, Smartphone, Boxes, Wrench, Plug, Cloud, Palette, ArrowUpRight,
 } from "lucide-react";

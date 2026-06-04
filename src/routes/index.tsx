@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Hero } from "@/components/sections/Hero";
 import { Technologies } from "@/components/sections/Technologies";
 import { Services } from "@/components/sections/Services";
@@ -8,17 +8,11 @@ import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Ephonon Technology — Scalable Software, Web & SaaS" },
-      { name: "description", content: "Custom software, web apps, mobile apps and enterprise platforms engineered for scale by Ephonon Technology." },
-    ],
-  }),
-  component: Index,
-});
-
-function Index() {
+export default function Index() {
+  usePageMeta(
+    "Ephonon Technology — Scalable Software, Web & SaaS",
+    "Custom software, web apps, mobile apps and enterprise platforms engineered for scale by Ephonon Technology."
+  );
   return (
     <>
       <Hero />

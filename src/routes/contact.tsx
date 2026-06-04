@@ -1,20 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { Mail, MessageSquare, MapPin, Send } from "lucide-react";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Ephonon Technology" },
-      { name: "description", content: "Tell us about your product. Ephonon Technology replies within 24 hours with a path forward." },
-      { property: "og:title", content: "Contact — Ephonon Technology" },
-      { property: "og:description", content: "Start a project or book a consultation." },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
+  usePageMeta("Contact — Ephonon Technology", "Tell us about your product. Ephonon Technology replies within 24 hours with a path forward.");
   return (
     <section className="pt-12 pb-24">
       <div className="mx-auto max-w-7xl px-4">

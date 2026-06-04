@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter, Sparkles, Mail, ArrowRight } from "lucide-react";
 
 export function Footer() {

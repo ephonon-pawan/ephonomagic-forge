@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, Play, Sparkles, Activity, Code2, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 
